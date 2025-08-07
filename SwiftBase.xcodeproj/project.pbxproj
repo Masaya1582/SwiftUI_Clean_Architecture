@@ -29,12 +29,27 @@
 		4007F1792E4474810069BC9E /* SwiftBaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftBaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		4007F15F2E44747E0069BC9E /* SwiftBase */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftBase;
-			sourceTree = "<group>";
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4007F1A72E4474B60069BC9E /* Exceptions for "SwiftBase" folder in "SwiftBase" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SwiftBase.xcdatamodeld,
+			);
+			target = 4007F15C2E44747E0069BC9E /* SwiftBase */;
 		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		4007F1A82E4474B60069BC9E /* Exceptions for "SwiftBase" folder in "Compile Sources" phase from "SwiftBase" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 4007F1592E44747E0069BC9E /* Sources */;
+			membershipExceptions = (
+				SwiftBase.xcdatamodeld,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
 		4007F1722E4474810069BC9E /* SwiftBaseTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SwiftBaseTests;
@@ -43,6 +58,15 @@
 		4007F17C2E4474810069BC9E /* SwiftBaseUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SwiftBaseUITests;
+			sourceTree = "<group>";
+		};
+		4007F1A12E4474B60069BC9E /* SwiftBase */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4007F1A72E4474B60069BC9E /* Exceptions for "SwiftBase" folder in "SwiftBase" target */,
+				4007F1A82E4474B60069BC9E /* Exceptions for "SwiftBase" folder in "Compile Sources" phase from "SwiftBase" target */,
+			);
+			path = SwiftBase;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +99,7 @@
 		4007F1542E44747E0069BC9E = {
 			isa = PBXGroup;
 			children = (
-				4007F15F2E44747E0069BC9E /* SwiftBase */,
+				4007F1A12E4474B60069BC9E /* SwiftBase */,
 				4007F1722E4474810069BC9E /* SwiftBaseTests */,
 				4007F17C2E4474810069BC9E /* SwiftBaseUITests */,
 				4007F15E2E44747E0069BC9E /* Products */,
@@ -108,7 +132,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				4007F15F2E44747E0069BC9E /* SwiftBase */,
+				4007F1A12E4474B60069BC9E /* SwiftBase */,
 			);
 			name = SwiftBase;
 			packageProductDependencies = (

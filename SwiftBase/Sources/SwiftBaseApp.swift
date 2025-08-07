@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct SwiftBaseApp: App {
-    let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            let useCase = DogDIContainer.shared.dogUseCase
+            let viewModel = DogViewModel(useCase: useCase)
+            DogListView(viewModel: viewModel)
         }
     }
 }
