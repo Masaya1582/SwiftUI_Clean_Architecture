@@ -10,10 +10,19 @@ import Foundation
 struct DogDTO: Decodable {
     let id: Int
     let name: String
-    let breed_group: String?
+    let breedGroup: String?
     let temperament: String?
-    let life_span: String
+    let lifeSpan: String
     let image: DogImageDTO?
+
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case breedGroup = "breed_group"
+        case temperament
+        case lifeSpan = "life_span"
+        case image
+    }
 }
 
 struct DogImageDTO: Decodable {
@@ -25,9 +34,9 @@ extension DogDTO {
         Dog(
             id: id,
             name: name,
-            breedGroup: breed_group,
+            breedGroup: breedGroup,
             temperament: temperament,
-            lifeSpan: life_span,
+            lifeSpan: lifeSpan,
             imageUrl: URL(string: image?.url ?? "")
         )
     }

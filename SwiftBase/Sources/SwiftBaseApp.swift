@@ -11,8 +11,8 @@ import SwiftUI
 struct SwiftBaseApp: App {
     var body: some Scene {
         WindowGroup {
-            let useCase = DogDIContainer.shared.dogUseCase
-            let viewModel = DogViewModel(useCase: useCase)
+            let container = DogDIContainer(apiKey: "")
+            let viewModel = DogViewModel(useCase: container.dogUseCase)
             DogListView(viewModel: viewModel)
         }
     }

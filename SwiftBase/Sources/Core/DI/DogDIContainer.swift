@@ -8,15 +8,12 @@
 import Foundation
 
 final class DogDIContainer {
-    static let shared = DogDIContainer()
-
     let dogApiClient: DogApiClient
     let dogRepository: DogRepository
     let dogUseCase: DogUseCase
 
-    private init() {
-        let apiKey = ""
-        let dogClient = DogApiClientImpl(apiKey: apiKey)
+    init(apiKey: String, apiClient: APIClient = Request()) {
+        let dogClient = DogApiClientImpl(apiClient: apiClient, apiKey: apiKey)
         self.dogApiClient = dogClient
         self.dogRepository = DogRepositoryImpl(apiClient: dogClient)
         self.dogUseCase = DogUseCaseImpl(repository: dogRepository)
