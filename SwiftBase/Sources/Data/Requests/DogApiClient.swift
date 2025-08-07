@@ -7,10 +7,12 @@
 
 import Foundation
 
+// MARK: - Protocol
 protocol DogApiClient {
     func fetchAllDogs() async throws -> [DogDTO]
 }
 
+// MARK: - Implementation
 final class DogApiClientImpl: DogApiClient {
     private let apiClient: APIClient
     private let apiKey: String
@@ -21,7 +23,11 @@ final class DogApiClientImpl: DogApiClient {
     }
 
     func fetchAllDogs() async throws -> [DogDTO] {
-        let request = DogRequest(apiKey: apiKey)
-        return try await apiClient.send(request)
+        try await send(DogRequest(apiKey: apiKey))
+    }
+
+    // MARK: - Private
+    private func send<T: APIRequest>(_ request: T) async throws -> T.Response {
+        try await apiClient.send(request)
     }
 }
