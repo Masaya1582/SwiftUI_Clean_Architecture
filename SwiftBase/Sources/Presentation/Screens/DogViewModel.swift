@@ -26,7 +26,7 @@ final class DogViewModel: ObservableObject {
             dogs = try await useCase.execute()
             error = nil
         } catch {
-            error = error.localizedDescription
+            self.error = error.localizedDescription
         }
         isLoading = false
     }
