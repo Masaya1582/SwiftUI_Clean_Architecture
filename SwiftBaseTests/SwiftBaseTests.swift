@@ -1,17 +1,46 @@
-//
-//  SwiftBaseTests.swift
-//  SwiftBaseTests
-//
-//  Created by Cookie-san on 2025/08/07.
-//
-
 import Testing
 @testable import SwiftBase
 
-struct SwiftBaseTests {
+extension Dog: Equatable {}
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+struct DogDTOTests {
+    @Test func toDomainConvertsAllFields() {
+        let dto = DogDTO(
+            id: 1,
+            name: "Fido",
+            breedGroup: "Herding",
+            temperament: "Calm",
+            lifeSpan: "10 years",
+            image: DogImageDTO(url: "https://example.com/fido.png")
+        )
+
+        let dog = dto.toDomain()
+
+        #expect(dog == Dog(
+            id: 1,
+            name: "Fido",
+            breedGroup: "Herding",
+            temperament: "Calm",
+            lifeSpan: "10 years",
+            imageUrl: URL(string: "https://example.com/fido.png")
+        ))
     }
+}
 
+struct DogUseCaseTests {
+    @Test func executeReturnsDogsFromRepository() async throws {
+        struct MockDogRepository: DogRepository {
+            let result: [Dog]
+            func fetchDogs() async throws -> [Dog] { result }
+        }
+
+        let expected = [
+            Dog(id: 1, name: "Fido", breedGroup: nil, temperament: nil, lifeSpan: "10 years", imageUrl: nil)
+        ]
+
+        let useCase = DogUseCaseImpl(repository: MockDogRepository(result: expected))
+        let dogs = try await useCase.execute()
+
+        #expect(dogs == expected)
+    }
 }
