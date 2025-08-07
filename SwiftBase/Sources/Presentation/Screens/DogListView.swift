@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct DogListView: View {
-    @StateObject var viewModel: DogViewModel
+    @StateObject private var viewModel: DogViewModel
+
+    init(viewModel: DogViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         NavigationView {
@@ -52,8 +56,8 @@ struct DogListView: View {
                     }
                 }
             }
-            .onAppear {
-                viewModel.loadBreeds()
+            .task {
+                await viewModel.loadBreeds()
             }
             .navigationTitle("Dog Breeds")
         }

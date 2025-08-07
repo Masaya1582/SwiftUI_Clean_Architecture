@@ -20,16 +20,14 @@ final class DogViewModel: ObservableObject {
         self.useCase = useCase
     }
 
-    func loadBreeds() {
-        Task {
-            do {
-                isLoading = true
-                dogs = try await useCase.execute()
-                error = nil
-            } catch {
-                self.error = error.localizedDescription
-            }
-            isLoading = false
+    func loadBreeds() async {
+        do {
+            isLoading = true
+            dogs = try await useCase.execute()
+            error = nil
+        } catch {
+            error = error.localizedDescription
         }
+        isLoading = false
     }
 }

@@ -12,10 +12,11 @@ protocol DogApiClient {
 }
 
 final class DogApiClientImpl: DogApiClient {
-    private let apiClient: APIClient = Request()
+    private let apiClient: APIClient
     private let apiKey: String
 
-    init(apiKey: String) {
+    init(apiClient: APIClient = Request(), apiKey: String) {
+        self.apiClient = apiClient
         self.apiKey = apiKey
     }
 
